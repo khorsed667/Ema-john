@@ -20,6 +20,7 @@ const SingUp = () => {
         .then(result =>{
             const signedUser = result.user
             console.log(signedUser);
+            form.reset()
         })
         .catch(error =>{
             console.log(error);
