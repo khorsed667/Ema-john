@@ -12,28 +12,34 @@ import Order from './Components/Order/Order';
 import Inventory from './Components/Inventory/Inventory';
 import Login from './Components/Login/Login';
 import loadcart from './LoadProduct/LoadProduct';
+import SingUp from './Components/SingUp/SingUp';
+import AuthProvider from './Components/Providers/AuthProvider';
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element:<Home></Home>,
-    children:[
+    path: "/",
+    element: <Home></Home>,
+    children: [
       {
-        path:"/",
-        element:<Shop></Shop>
+        path: "/",
+        element: <Shop></Shop>
       },
       {
-        path:"orders",
-        element:<Order></Order>,
+        path: "orders",
+        element: <Order></Order>,
         loader: loadcart
       },
       {
         path: "inventory",
-        element:<Inventory></Inventory>
+        element: <Inventory></Inventory>
       },
       {
         path: "login",
-        element:<Login></Login>
+        element: <Login></Login>
+      },
+      {
+        path: 'singup',
+        element: <SingUp></SingUp>
       }
     ]
   }
@@ -41,8 +47,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider
-    router={router}
-    ></RouterProvider>
+      <AuthProvider>
+      <RouterProvider
+        router={router}
+      ></RouterProvider>
+      </AuthProvider>
   </React.StrictMode>,
 )
